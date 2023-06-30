@@ -330,12 +330,13 @@ public class SwiftSpeechToTextPlugin: NSObject, FlutterPlugin {
         catch {
             os_log("Error stopping listen: %{PUBLIC}@", log: pluginLog, type: .error, error.localizedDescription)
         }
+        /* Quick fix to avoid audio got muted
         do {
             try self.audioSession.setActive(false, options: .notifyOthersOnDeactivation)
         }
         catch {
             os_log("Error deactivation: %{PUBLIC}@", log: pluginLog, type: .info, error.localizedDescription)
-        }
+        } */
         self.invokeFlutter( SwiftSpeechToTextCallbackMethods.notifyStatus, arguments: SpeechToTextStatus.done.rawValue )
 
         currentRequest = nil
